@@ -125,6 +125,7 @@ Let's say you have the number of donuts your Dad bought on Sunday stored in vari
 A related function that is very useful is `ifelse`. This works just like an if/else combination that we saw earlier, but condenses it into a single line of code. This function takes three arguments: a logical and two possible answers. If the logical is `TRUE`, the value in the second argument is returned and if `FALSE`, the value in the third argument is returned. Here is an example:
 
 ```{r}
+# Calculate reciprocals
 a = 0
 ifelse(a > 0, 1/a, NA)
 ```
@@ -133,8 +134,8 @@ The function is particularly useful because it works on vectors. It examines eac
 
 ```{r}
 a = c(0, 1, 2, -4, 5)
-result = ifelse(a > 0, 1/a, NA)
-cbind(a,result)
+reciprocals = ifelse(a > 0, 1/a, NA)
+cbind(a, reciprocals)
 ```
 
 ***
