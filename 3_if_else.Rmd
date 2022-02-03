@@ -134,7 +134,7 @@ The function is particularly useful because it works on vectors. It examines eac
 
 ```{r}
 a = c(0, 1, 2, -4, 5)
-reciprocals = ifelse(a > 0, 1/a, NA)
+reciprocals = ifelse(a != 0, 1/a, NA)
 cbind(a, reciprocals)
 ```
 

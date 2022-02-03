@@ -70,7 +70,7 @@ for (i in seq(n)) {
 my_vector_squared
 ```
 
-It is important to note here that an empty vector with the correct length was made before starting the `for` loop and the iterand `i` was used to step through both our original data vector and our new results vector. Programers call this *initializing* an object, or creating an empty object to fill later. This is a much better (and faster) practice than appending a new result onto a results vector, and therefore changing the lengtt of the results vector with every iteration of the loop. 
+It is important to note here that an empty vector with the correct length was made before starting the `for` loop and the iterand `i` was used to step through both our original data vector and our new results vector. Programmers call this *initializing* an object, or creating an empty object to fill later. This is a much better (and faster) practice than appending a new result onto a results vector, and therefore changing the length of the results vector with every iteration of the loop. 
 
 Here is another example of using the iterand as an index. We can add up all of the elements of a vector, one at a time, and store the total sum in another variable:
 
