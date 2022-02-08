@@ -222,7 +222,7 @@ for (i in seq(n)) {
 }
 my_vector_squared
 ## [1]  1  9 25  4 16</code></pre>
-<p>It is important to note here that an empty vector with the correct length was made before starting the <code>for</code> loop and the iterand <code>i</code> was used to step through both our original data vector and our new results vector. Programers call this <em>initializing</em> an object, or creating an empty object to fill later. This is a much better (and faster) practice than appending a new result onto a results vector, and therefore changing the lengtt of the results vector with every iteration of the loop.</p>
+<p>It is important to note here that an empty vector with the correct length was made before starting the <code>for</code> loop and the iterand <code>i</code> was used to step through both our original data vector and our new results vector. Programmers call this <em>initializing</em> an object, or creating an empty object to fill later. This is a much better (and faster) practice than appending a new result onto a results vector, and therefore changing the length of the results vector with every iteration of the loop.</p>
 <p>Here is another example of using the iterand as an index. We can add up all of the elements of a vector, one at a time, and store the total sum in another variable:</p>
 <pre class="r"><code>vec = c(1,3,5,7)
 total = 0 # initialize results variable
@@ -238,7 +238,7 @@ for (i in seq(length(vec))){
 </div>
 <div id="exercise-5.1" class="section level3">
 <h3>Exercise 5.1</h3>
-<p>Use a for() loop to calculate the factorial (symbol !) of any integer number greater than 0. (For example: 3! = 3<em>2</em>1 = 6) Test it with <code>num = 3</code> and <code>num = 6</code>.</p>
+<p>Use a for() loop to calculate the factorial (symbol !) of any integer number greater than 0. (For example: 3! = 3x2x1 = 6) Test it with <code>num = 3</code> and <code>num = 6</code>.</p>
 <hr />
 </div>
 <div id="nested-for-loops" class="section level3">
@@ -249,10 +249,19 @@ mat_squared = matrix(rep(NA,6), nrow=2, ncol=3) # This matrix will hold our resu
 
 for(i in c(1:2)){
   for(j in c(1:3)){
-    mat_squared[i,j] = mat[i,j]
+    mat_squared[i,j] = mat[i,j]^2
   }
 }</code></pre>
-<p>So we created the first matrix <code>mat</code> of some data, and we <em>initialized</em> a second matrix <code>mat_squared</code> that we later filled with the square of each value from the first matrix <code>mat</code>. In each iteration of the outer loop, the iterand <code>i</code> steps through each row of the data matrix. In each iteration of the inner loop, the iterand <code>j</code> steps through each column of the data matrix. If this nested loop seems confusing, it may help to see print out the iterands to see how eventually each element of the 2x3 matrix is accessed:</p>
+<p>So we created the first matrix <code>mat</code> of some data, and we <em>initialized</em> a second matrix <code>mat_squared</code> that we later filled with the square of each value from the first matrix <code>mat</code>. In each iteration of the outer loop, the iterand <code>i</code> steps through each row of the data matrix. In each iteration of the inner loop, the iterand <code>j</code> steps through each column of the data matrix. Better yet, we can run the same nested for loops, and instead of hard-coding the vectors that <code>i</code> and <code>j</code> step through, we’ll program the number of iterations to be equal to the number of rows and number of columns in the matrix we are squaring:</p>
+<pre class="r"><code>mat = matrix(c(2,0,8,3,5,-4), nrow=2, ncol=3)
+mat_squared = matrix(rep(NA,6), nrow=2, ncol=3) # This matrix will hold our results
+
+for(i in seq(dim(mat)[1])){
+  for(j in seq(dim(mat)[2])){
+    mat_squared[i,j] = mat[i,j]^2
+  }
+}</code></pre>
+<p>If this nested loop seems confusing, it may help to print out the iterands to see how eventually each element of the 2x3 matrix is accessed:</p>
 <pre class="r"><code>for(i in c(1:2)){
   for(j in c(1:3)){
     print(paste(&quot;row i=&quot;,i,&quot; and column j=&quot;,j)) 
@@ -282,8 +291,12 @@ mat^2
   code
 }</code></pre>
 <p><code>while</code> will rerun <code>condition</code>, which should be a logical test, at the start of each loop. If <code>condition</code> evaluates to <code>TRUE</code>, <code>while</code> will run the code between its braces. If <code>condition</code> evaluates to <code>FALSE</code>, <code>while</code> will finish the loop.</p>
-<p>Why might <code>condition</code> change from <code>TRUE</code> to <code>FALSE</code>? Presumably because the code inside your loop has changed whether the condition is still <code>TRUE</code>. If the code has no relationship to the condition, a <code>while</code> loop will run until you stop it. So be careful. You can stop a <code>while</code> loop by hitting Escape or by clicking on the stop-sign icon at the top of the RStudio console pane. The icon will appear once the loop begins to run.</p>
-<p>Here is an example of a simple <code>while</code> loop:</p>
+<p>Why might <code>condition</code> change from <code>TRUE</code> to <code>FALSE</code>? Presumably because the code inside your loop has changed whether the condition is still <code>TRUE</code>. If the code has no relationship to the condition, a <code>while</code> loop will run until you stop it. So be careful not to create an <code>infinite loop</code>. You can stop a <code>while</code> loop by hitting Escape or by clicking on the stop-sign icon at the top of the RStudio console pane. The icon will appear once the loop begins to run. For example, this loop will run forever:</p>
+<pre class="r"><code>x = 1
+while(x&gt;0){
+  x = x+1
+}</code></pre>
+<p>Here is an example of a simple <code>while</code> loop with an effective exit condition:</p>
 <pre class="r"><code>num = -2
 while(num &lt; 0){
   print(&quot;One interation of this loop&quot;)
@@ -301,9 +314,9 @@ while (total_catch_lb &lt; 50){
 }
 
 n_fish
-## [1] 26
+## [1] 25
 total_catch_lb
-## [1] 52.50489</code></pre>
+## [1] 50.04037</code></pre>
 <p>This code will probably result in our fisherman catching about 25 fish, since I set the mean weight of the fish in the lake at 2lb. Technically, our fisherman might need to throw the last fish back, since it put him over the weight limit (<code>total_catch_lb &gt; 50</code>).</p>
 <hr />
 <div id="exercise-5.2" class="section level3">
