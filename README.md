@@ -23,6 +23,8 @@ HW2 repo link: https://classroom.github.com/a/qMtwl30W
 
 -  HW_3_ice_core_co2 - Assigned: 2/10/2022, Due: 2/17/2022
 
+HW3 repo link: https://classroom.github.com/a/nUxC0vr4
+
 ***
 
 #### Lesson 1: Melting Ice Sheets
